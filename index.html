@@ -85,7 +85,7 @@ app.factory('dataService', function() {
 });
 
 function requestBusData($scope,$http,dataService,StopId) {
-    $http.get("http://ivu.aseag.de/interfaces/ura/instant_V1?StopAlso=false&ReturnList=linename,destinationtext,estimatedtime&StopId="+StopId, {
+    $http.get("http://ivu.svhl.de:8180/interfaces/ura/instant_V1?StopAlso=false&ReturnList=linename,destinationtext,estimatedtime&StopId="+StopId, {
         transformResponse: function(data, headers) {
             str = '['+data.split('\n').slice(1).join(',')+']'; // repair json
             json_obj = JSON.parse(str).sort(function(a,b){return a[3] - b[3]}); // sort by departure time
@@ -98,7 +98,7 @@ function requestBusData($scope,$http,dataService,StopId) {
 }
 
 function requestStopName($scope,$http,StopId) {
-    $http.get("http://ivu.aseag.de/interfaces/ura/instant_V1?StopAlso=true&StopId="+StopId, {
+    $http.get("http://ivu.svhl.de:8180/interfaces/ura/instant_V1?StopAlso=true&StopId="+StopId, {
         transformResponse: function(data, headers) {
             str = '['+data.split('\n').slice(1, 2).join(',')+']'; // repair json
             json_obj = JSON.parse(str); // sort by departure time
