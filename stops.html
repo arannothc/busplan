@@ -88,7 +88,7 @@ app.controller('stopsController',
             setTimeout(function(){ window.open("index.html?StopId="+StopId,"_self"); }, 300);
         };
 
-        $http.get("http://ivu.aseag.de/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID", { //All Stops
+        $http.get("http://ivu.svhl.de:8180/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID", { //All Stops
             transformResponse: function(data, headers) {
                 str = '['+data.split('\n').slice(1).join(',')+']'; // repair json
                 json_obj = JSON.parse(str).sort(); // sort by name
